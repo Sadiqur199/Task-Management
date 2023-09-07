@@ -35,7 +35,7 @@ function SignUp() {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto mt-8">
+    <div className="w-full max-w-sm mx-auto mt-8 mb-8">
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
         <div className="mb-4">

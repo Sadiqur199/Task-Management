@@ -1,26 +1,26 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Logout from '../Logout/Logout';
 
 function Navbar() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-
-    navigate('/login');
-  };
-
   return (
     <nav className="bg-blue-500 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white text-2xl font-bold">
-          Task Manager
-        </Link>
-        <ul className="flex space-x-4">
-          <Link to='/'>
-          <li className="text-white hover:text-gray-200">Home</li>
+      <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+        <div className="flex items-center">
+          <Link to="/" className="text-white text-2xl font-bold mr-4 mb-2 sm:mb-0">
+            Task Manager
           </Link>
+         
+        </div>
+        <ul className="flex space-x-4 mt-4 sm:mt-0">
+        <li>
+                <Link to="/" className="text-white hover:text-gray-200">
+                  Home
+                </Link>
+          </li>
           {isLoggedIn ? (
             <>
               <li>
@@ -34,11 +34,8 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <button
-                  onClick={handleLogout}
-                  className="text-white hover:text-gray-200"
-                >
-                  Logout
+                <button className="text-white hover:text-gray-200">
+                  <Logout />
                 </button>
               </li>
             </>

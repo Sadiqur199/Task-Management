@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 
-function TaskForm({ addTask }) {
+function TaskForm({ addTask, teamMembers, teams}) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [priority, setPriority] = useState('low');
   const [assignee, setAssignee] = useState('');
   const [status, setStatus] = useState('inProgress');
+  const [selectedTeam, setSelectedTeam] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTask = {
-      id: Date.now(), 
+      id: Date.now(),
       title,
       description,
       dueDate,
       priority,
-      assignee,
-      status, 
+      status,
+      assignee: selectedTeam, // Assign the selected team to the task
     };
     addTask(newTask);
     setTitle('');
@@ -26,6 +27,7 @@ function TaskForm({ addTask }) {
     setPriority('low');
     setAssignee('');
     setStatus('inProgress');
+    setSelectedTeam('');
   };
 
   return (
@@ -86,7 +88,7 @@ function TaskForm({ addTask }) {
             <option value="high">High</option>
           </select>
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="assignee">
             Assignee:
           </label>
@@ -98,7 +100,7 @@ function TaskForm({ addTask }) {
             onChange={(e) => setAssignee(e.target.value)}
             required
           />
-        </div>
+        </div> */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="status">
             Status:
@@ -113,6 +115,27 @@ function TaskForm({ addTask }) {
             <option value="inProgress">In Progress</option>
             <option value="completed">Completed</option>
           </select>
+        </div>
+        {/* Add team selection */}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="team">
+          Assignee:
+          </label>
+          <select
+            id="team"
+            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+            value={selectedTeam}
+            onChange={(e) => setSelectedTeam(e.target.value)}
+            required
+          >
+    <option value="">Select Team</option>
+    {teams.map((team, index) => (
+      <option key={index} value={team.name}>
+        {team.name}
+      </option>
+    ))}
+  </select>
+
         </div>
         <div className="mb-4">
           <button
