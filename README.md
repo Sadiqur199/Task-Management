@@ -2,7 +2,7 @@
 
 
 
-- [Live Link](https://ibostask.netlify.app/) \
+- [Live Link](https://ibostask.netlify.app/) 
 
 ##### Technology Use <br>
 React Router<br>
